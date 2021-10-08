@@ -49,16 +49,13 @@ public class AESUtil {
         InputStream applicationPropertiesStream = classLoader.getResourceAsStream("application.properties");
         try {
             properties.load(applicationPropertiesStream);
-            System.out.println(properties.get("secret.key"));
             if (Objects.isNull(properties.getProperty("secret.key"))) {
                 throw new AESException("secret.key cannot be null");
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new AESException(e.getMessage());
         }
-
-        SecretKey key = new SecretKeySpec(properties.getProperty("secret.key").getBytes(), AES);
-        return key;
+        return new SecretKeySpec(properties.getProperty("secret.key").getBytes(), AES);
     }
 
     /**
@@ -78,7 +75,6 @@ public class AESUtil {
             cipher.init(Cipher.ENCRYPT_MODE, KEY, gcmParameterSpec);
             return Base64.getEncoder().encodeToString(cipher.doFinal(pText.getBytes()));
         } catch (Exception e) {
-            e.printStackTrace();
             throw new AESException("Could not encrypt the text");
         }
     }
@@ -99,7 +95,6 @@ public class AESUtil {
             byte[] plainText = cipher.doFinal(Base64.getDecoder().decode(cText));
             return new String(plainText, StandardCharsets.UTF_8);
         } catch (Exception e) {
-            e.printStackTrace();
             throw new AESException("Could not decrypt the cipher text");
         }
     }
