@@ -5,11 +5,13 @@ import com.dk.springmailapi.service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMailMessage;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.thymeleaf.context.Context;
+import org.thymeleaf.spring5.SpringTemplateEngine;
 
+import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.File;
 
@@ -23,6 +25,9 @@ public class MailServiceImpl implements MailService {
 
     @Autowired
     private JavaMailSender javaMailSender;
+
+    @Autowired
+    private SpringTemplateEngine templateEngine;
 
     /**
      * @param mailDTO
@@ -72,4 +77,30 @@ public class MailServiceImpl implements MailService {
         }
         return "Success";
     }
+
+    /**
+     * @param mailDTO
+     * @return the response as String
+     * <p>
+     * This method is used to send the Email
+     * </p>
+     */
+    @Override
+    public String sendEmailWithThymeleafTemplate(MailDTO mailDTO) {
+        Context thymeLeafContext = new Context();
+        String htmlBody = templateEngine.process("welcome.html", thymeLeafContext);
+        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+        try {
+            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
+            mimeMessageHelper.setTo(mailDTO.getTo());
+            mimeMessageHelper.setSubject(mailDTO.getSubject());
+            mimeMessageHelper.setText(htmlBody, true);
+            javaMailSender.send(mimeMessage);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+            return "Failed";
+        }
+        return "Success";
+    }
 }
+

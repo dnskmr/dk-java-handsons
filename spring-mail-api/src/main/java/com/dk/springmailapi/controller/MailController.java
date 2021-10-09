@@ -30,9 +30,9 @@ public class MailController {
     public ResponseEntity sendMail(@RequestBody MailDTO mailDTO) {
         String response = mailService.sendMail(mailDTO);
         if ("Success".equals(response)) {
-            return new ResponseEntity<String>("Successfully Sent", HttpStatus.OK);
+            return new ResponseEntity<>("Successfully Sent", HttpStatus.OK);
         } else {
-            return new ResponseEntity<String>("Failed to Send", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("Failed to Send", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -45,9 +45,24 @@ public class MailController {
     public ResponseEntity sendMailWithAttachment(@RequestParam("file")MultipartFile multipartFile,@RequestParam("to") String to) {
         String response = mailService.sendMailWithAttachment(multipartFile,to);
         if ("Success".equals(response)) {
-            return new ResponseEntity<String>("Successfully Sent", HttpStatus.OK);
+            return new ResponseEntity<>("Successfully Sent", HttpStatus.OK);
         } else {
-            return new ResponseEntity<String>("Failed to Send", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("Failed to Send", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+    /**
+     * @param mailDTO
+     * @return the response
+     */
+    @PostMapping("/mail/send/template")
+    public ResponseEntity sendEmailWithThymeleafTemplate(@RequestBody MailDTO mailDTO) {
+        String response = mailService.sendEmailWithThymeleafTemplate(mailDTO);
+        if ("Success".equals(response)) {
+            return new ResponseEntity<>("Successfully Sent", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Failed to Send", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }
