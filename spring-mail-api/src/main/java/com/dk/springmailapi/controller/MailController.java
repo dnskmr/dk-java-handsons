@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author Dinesh
  * @version 1.0
@@ -42,8 +45,8 @@ public class MailController {
      * @return the response
      */
     @PostMapping("/mail/send/attachment")
-    public ResponseEntity sendMailWithAttachment(@RequestParam("file")MultipartFile multipartFile,@RequestParam("to") String to) {
-        String response = mailService.sendMailWithAttachment(multipartFile,to);
+    public ResponseEntity sendMailWithAttachment(@RequestParam("file") MultipartFile multipartFile, @RequestParam("to") String to) {
+        String response = mailService.sendMailWithAttachment(multipartFile, to);
         if ("Success".equals(response)) {
             return new ResponseEntity<>("Successfully Sent", HttpStatus.OK);
         } else {
@@ -58,7 +61,9 @@ public class MailController {
      */
     @PostMapping("/mail/send/template")
     public ResponseEntity sendEmailWithThymeleafTemplate(@RequestBody MailDTO mailDTO) {
-        String response = mailService.sendEmailWithThymeleafTemplate(mailDTO);
+        Map<String, Object> templateModel = new HashMap<>();
+        templateModel.put("name", "Dinesh");
+        String response = mailService.sendEmailWithThymeleafTemplate(mailDTO,templateModel);
         if ("Success".equals(response)) {
             return new ResponseEntity<>("Successfully Sent", HttpStatus.OK);
         } else {

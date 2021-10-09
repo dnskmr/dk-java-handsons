@@ -14,6 +14,7 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.File;
+import java.util.Map;
 
 /**
  * @author Contus
@@ -86,8 +87,9 @@ public class MailServiceImpl implements MailService {
      * </p>
      */
     @Override
-    public String sendEmailWithThymeleafTemplate(MailDTO mailDTO) {
+    public String sendEmailWithThymeleafTemplate(MailDTO mailDTO, Map<String, Object> templateModel) {
         Context thymeLeafContext = new Context();
+        thymeLeafContext.setVariables(templateModel);
         String htmlBody = templateEngine.process("welcome.html", thymeLeafContext);
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         try {

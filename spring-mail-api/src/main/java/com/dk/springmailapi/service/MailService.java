@@ -3,6 +3,8 @@ package com.dk.springmailapi.service;
 import com.dk.springmailapi.dto.MailDTO;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Map;
+
 /**
  * @author Dinesh
  * @version 1.0
@@ -27,5 +29,5 @@ public interface MailService {
      * @param mailDTO
      * @return the response as String
      */
-    String sendEmailWithThymeleafTemplate(MailDTO mailDTO);
+    String sendEmailWithThymeleafTemplate(MailDTO mailDTO, Map<String, Object> templateModel);
 }
