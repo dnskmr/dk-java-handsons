@@ -37,6 +37,7 @@ public class MailServiceImpl implements MailService {
     @Override
     public String sendMail(MailDTO mailDTO) {
         try {
+            String sql = "select * from employee where id=2";
             SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
             simpleMailMessage.setTo(mailDTO.getTo());
             simpleMailMessage.setText(mailDTO.getMessage());
