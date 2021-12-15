@@ -30,4 +30,11 @@ public interface MailService {
      * @return the response as String
      */
     String sendEmailWithThymeleafTemplate(MailDTO mailDTO, Map<String, Object> templateModel);
+
+    /**
+     *
+     * @param to
+     * @return the response as String
+     */
+    String sendMailAttachment(byte[] fileContent, String to);
 }

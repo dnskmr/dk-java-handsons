@@ -1,6 +1,7 @@
 package com.dk.springmailapi.dto;
 
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * @author Dinesh
@@ -14,4 +15,5 @@ public class MailDTO {
     private String bcc;
     private String subject;
     private String message;
+    private byte[] fileContent;
 }

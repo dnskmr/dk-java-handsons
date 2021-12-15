@@ -3,6 +3,7 @@ package com.dk.springmailapi.service.impl;
 import com.dk.springmailapi.dto.MailDTO;
 import com.dk.springmailapi.service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -11,9 +12,17 @@ import org.springframework.web.multipart.MultipartFile;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 
+import javax.activation.DataSource;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import javax.mail.util.ByteArrayDataSource;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.InputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -104,6 +113,36 @@ public class MailServiceImpl implements MailService {
             return "Failed";
         }
         return "Success";
+    }
+
+    /**
+     * @param to
+     * @return
+     */
+    @Override
+    public String sendMailAttachment(byte[] fileContent, String to) {
+        try {
+            MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+            // true = multipart message
+            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
+            mimeMessageHelper.setTo(to);
+            mimeMessageHelper.setSubject("Test Mail");
+            mimeMessageHelper.setText("Hi, <br/> PFA", true);
+            final InputStream inputStream = new ByteArrayInputStream(fileContent);
+            final DataSource attachment = new ByteArrayDataSource(inputStream, "application/octet-stream");
+            mimeMessageHelper.addAttachment(getFileName(),attachment);
+            javaMailSender.send(mimeMessage);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Failed";
+        }
+        return "Success";
+    }
+
+    public String getFileName() {
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
+        return "users_"+currentDateTime+".xlsx";
     }
 }
 

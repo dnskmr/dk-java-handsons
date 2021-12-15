@@ -70,4 +70,17 @@ public class MailController {
             return new ResponseEntity<>("Failed to Send", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    /**
+     * @return the response
+     */
+    @PostMapping("/mail/sendattachment")
+    public ResponseEntity sendMailAttachment(@RequestBody MailDTO mailDTO) {
+        String response = mailService.sendMailAttachment(mailDTO.getFileContent(),mailDTO.getTo());
+        if ("Success".equals(response)) {
+            return new ResponseEntity<>("Successfully Sent", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Failed to Send", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
