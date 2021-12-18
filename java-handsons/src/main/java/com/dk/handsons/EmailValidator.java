@@ -16,16 +16,16 @@ public class EmailValidator {
 
     /**
      * <p>
-     * Starts with Alpha Numeric - [a-z0-9] first character
-     * Between 3 to 30- (\.?[a-z0-9]){2,27}
-     * Ends with  - gmail.com
+     * [a-z0-9] - Starts with Alpha Numeric
+     * (\.?[a-z0-9]){2,27} - Between 3 to 30 and Special Chars ._ will be allowed-
+     * gmail.com - Ends with @gmail.com
      * </p>
      *
      * @param args The String array args
      */
     public static void main(String[] args) {
-        String email = "dinesh@gmail.com";
-        String regex = "^[a-z0-9](\\.?[a-z0-9]){2,27}@gmail\\.com$";
+        String email = "dinesh_kumar@gmail.com";
+        String regex = "^[a-z0-9](\\.?[a-z0-9_]){2,27}@gmail\\.com$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(email);
         System.out.println(email + " : " + matcher.matches() + "\n");
