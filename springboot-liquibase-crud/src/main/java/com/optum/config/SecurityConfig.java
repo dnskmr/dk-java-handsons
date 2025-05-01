@@ -18,6 +18,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/labelbox-projects/**").authenticated()
+//                        .requestMatchers("/api/labelbox-projects/**").permitAll()
                         .anyRequest().permitAll()
                 )
                 .httpBasic(httpBasic -> {});
