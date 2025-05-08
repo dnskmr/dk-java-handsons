@@ -1,0 +1,273 @@
+Workspace Controller:
+==================================
+
+POST:
+======
+URL:
+
+http://localhost:8080/api/workspace
+
+Request Body:
+------------------------------------------
+
+{
+  "workspaceId": "ws001",
+  "workspaceName": "Development Workspace",
+  "description": "Main workspace for backend development"
+}
+
+Response:
+
+{
+    "workspaceId": "ws001",
+    "workspaceName": "Development Workspace",
+    "description": "Main workspace for backend development",
+    "status": null,
+    "createdAt": "2025-05-08T17:14:49.468181100Z",
+    "modifiedAt": "2025-05-08T17:14:49.468181100Z"
+}
+
+GET:
+=========
+
+URL:
+
+http://localhost:8080/api/workspaces
+
+Response:
+
+[
+    {
+        "workspaceId": "ws003",
+        "workspaceName": "Development Workspace",
+        "description": "Main workspace for backend development",
+        "status": null,
+        "createdAt": "2025-05-08T17:14:04.827096Z",
+        "modifiedAt": "2025-05-08T17:14:04.827096Z"
+    },
+    {
+        "workspaceId": "ws001",
+        "workspaceName": "Development Workspace",
+        "description": "Main workspace for backend development",
+        "status": null,
+        "createdAt": "2025-05-08T17:14:49.468181Z",
+        "modifiedAt": "2025-05-08T17:14:49.468181Z"
+    }
+]
+
+
+GET By ID:
+=================
+
+URL;
+
+http://localhost:8080/api/workspaces/ws003
+
+Response:
+
+{
+    "workspaceId": "ws003",
+    "workspaceName": "Development Workspace",
+    "description": "Main workspace for backend development",
+    "status": null,
+    "createdAt": "2025-05-08T17:14:04.827096Z",
+    "modifiedAt": "2025-05-08T17:14:04.827096Z"
+}
+
+
+PUT:
+===============
+
+URL;
+
+http://localhost:8080/api/workspaces/ws003
+
+Request Body:
+
+{
+  "name": "Development Workspace",
+  "description": "Main workspace for backend development testing"
+}
+
+Response:
+
+{
+    "workspaceId": "ws003",
+    "workspaceName": null,
+    "description": "Main workspace for backend development testing",
+    "status": null,
+    "createdAt": "2025-05-08T17:14:04.827096Z",
+    "modifiedAt": "2025-05-08T17:29:12.902945Z"
+}
+
+
+DELETE:
+==================
+
+URL:
+
+http://localhost:8080/api/workspaces/ws003
+
+Response:
+
+
+
+
+User Controller:
+==================================
+
+POST:
+========
+
+URL:
+
+http://localhost:8080/api/users
+
+Request Body:
+
+{
+  "userId": "user123",
+  "userName": "John Doe",
+  "email": "john.doe@example.com",
+  "password": "securePassword123",
+  "role": "Admin",
+  "status": "Active",
+  "workspace": {
+    "workspaceId": "ws001"
+  }
+}
+
+Response:
+
+{
+    "userId": "user123",
+    "workspace": {
+        "workspaceId": "ws001",
+        "workspaceName": "Development Workspace",
+        "description": "Main workspace for backend development",
+        "status": null,
+        "createdAt": "2025-05-08T17:14:49.468181Z",
+        "modifiedAt": "2025-05-08T17:14:49.468181Z"
+    },
+    "userName": "John Doe",
+    "email": "john.doe@example.com",
+    "password": "$2a$10$PHHy9iacHPK/t40u20Mpx.FdGJMK0wY/5ghNlb0Pa67TloUskDcNy",
+    "role": "ROLE_ADMIN",
+    "status": "Active",
+    "createdAt": "2025-05-08T17:38:02.564338800Z",
+    "modifiedAt": "2025-05-08T17:38:02.564338800Z"
+}
+
+
+GET:
+========
+
+URL:
+
+http://localhost:8080/api/users
+
+
+Response:
+
+[
+    {
+        "userId": "user123",
+        "workspace": {
+            "workspaceId": "ws001",
+            "workspaceName": "Development Workspace",
+            "description": "Main workspace for backend development",
+            "status": null,
+            "createdAt": "2025-05-08T17:14:49.468181Z",
+            "modifiedAt": "2025-05-08T17:14:49.468181Z"
+        },
+        "userName": "John Doe",
+        "email": "john.doe@example.com",
+        "password": "$2a$10$PHHy9iacHPK/t40u20Mpx.FdGJMK0wY/5ghNlb0Pa67TloUskDcNy",
+        "role": "ROLE_ADMIN",
+        "status": "Active",
+        "createdAt": "2025-05-08T17:38:02.564339Z",
+        "modifiedAt": "2025-05-08T17:38:02.564339Z"
+    }
+]
+
+
+GET By ID:
+=============
+
+
+URL:
+
+http://localhost:8080/api/users/user123
+
+Response:
+
+{
+    "userId": "user123",
+    "workspace": {
+        "workspaceId": "ws001",
+        "workspaceName": "Development Workspace",
+        "description": "Main workspace for backend development",
+        "status": null,
+        "createdAt": "2025-05-08T17:14:49.468181Z",
+        "modifiedAt": "2025-05-08T17:14:49.468181Z"
+    },
+    "userName": "John Doe",
+    "email": "john.doe@example.com",
+    "password": "$2a$10$PHHy9iacHPK/t40u20Mpx.FdGJMK0wY/5ghNlb0Pa67TloUskDcNy",
+    "role": "ROLE_ADMIN",
+    "status": "Active",
+    "createdAt": "2025-05-08T17:38:02.564339Z",
+    "modifiedAt": "2025-05-08T17:38:02.564339Z"
+}
+
+
+PUT:
+==============
+
+URL:
+
+http://localhost:8080/api/users/user123
+
+Request Body:
+
+{
+  "userId": "user123",
+  "userName": "John Doere",
+  "email": "john.doe@example.com",
+  "password": "securePassword1234",
+  "role": "Admin",
+  "status": "Active",
+  "workspace": {
+    "workspaceId": "ws001"
+  }
+}
+
+Response:
+
+{
+    "userId": "user123",
+    "workspace": {
+        "workspaceId": "ws001",
+        "workspaceName": null,
+        "description": null,
+        "status": null,
+        "createdAt": "2025-05-08T17:56:38.048917400Z",
+        "modifiedAt": "2025-05-08T17:56:38.048917400Z"
+    },
+    "userName": "John Doere",
+    "email": "john.doe@example.com",
+    "password": "$2a$10$0iuOh0MfKzSjNrkbt9VV4eP4HUvj5h205NsPeutsoTeRedLihfDqa",
+    "role": "ROLE_ADMIN",
+    "status": "Active",
+    "createdAt": "2025-05-08T17:38:02.564339Z",
+    "modifiedAt": "2025-05-08T17:56:38.136878300Z"
+}
+
+DELETE:
+=============
+
+URL:
+
+http://localhost:8080/api/users/user567
+
+
