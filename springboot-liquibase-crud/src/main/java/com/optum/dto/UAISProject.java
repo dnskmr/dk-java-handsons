@@ -1,9 +1,12 @@
 package com.optum.dto;
 
+import com.vladmihalcea.hibernate.type.json.JsonType;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Type;
 
 import java.time.Instant;
+import java.util.Map;
 
 @Entity
 @Table(name = "UAISProject")
@@ -30,8 +33,9 @@ public class UAISProject {
     @JoinColumn(name = "WorkspaceID", referencedColumnName = "WorkspaceId")
     private Workspace workspace;
 
+    @Type(JsonType.class)
     @Column(name = "Metadata", columnDefinition = "jsonb")
-    private String metadata;
+    private Map<String, Object> metadata;
 
     @Column(name = "CreatedAt", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Instant createdAt;

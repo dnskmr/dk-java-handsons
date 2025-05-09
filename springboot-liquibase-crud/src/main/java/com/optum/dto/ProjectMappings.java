@@ -1,9 +1,12 @@
 package com.optum.dto;
 
+import com.vladmihalcea.hibernate.type.json.JsonType;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Type;
 
 import java.time.Instant;
+import java.util.Map;
 
 @Entity
 @Table(name = "ProjectMappings")
@@ -28,8 +31,9 @@ public class ProjectMappings {
     @Column(name = "Tag", length = 100)
     private String tag;
 
+    @Type(JsonType.class)
     @Column(name = "Metadata", columnDefinition = "jsonb")
-    private String metadata;
+    private Map<String, Object> metadata;
 
     @Column(name = "CreatedAt")
     private Instant createdAt = Instant.now();
