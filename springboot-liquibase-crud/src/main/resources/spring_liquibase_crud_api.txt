@@ -493,3 +493,721 @@ URL:
 http://localhost:8080/api/vendor-projects/vp002
 
 Response:
+
+
+User Group:
+--------------------------------------------
+
+POST:
+=======
+
+URL:
+
+http://localhost:8080/api/user-groups
+
+Request Body:
+
+{
+  "userGroupId": "ug001",
+  "userGroupName": "Admin Group",
+  "userProject": {
+    "userProjectId": "up001"
+  },
+  "vendorProject": {
+    "vendorProjectId": "vp001"
+  },
+  "status": "ACTIVE",
+  "tag": "admin-tag"
+}
+
+Response:
+
+{
+    "userGroupId": "ug001",
+    "userGroupName": "Admin Group",
+    "userProject": {
+        "userProjectId": "up001",
+        "name": "Internal Dashboard Testing",
+        "description": "Project for internal tooling and analytics",
+        "createdAt": "2025-05-09T12:59:58.605222Z",
+        "modifiedAt": "2025-05-09T12:59:58.605222Z"
+    },
+    "vendorProject": {
+        "vendorProjectId": "vp001",
+        "projectName": "Third-Party Analytics",
+        "dataType": "Healthcare",
+        "tag": "analytics",
+        "vendorType": "External",
+        "startDate": "2024-01-01T00:00:00Z",
+        "endDate": "2024-12-31T23:59:59Z",
+        "createdAt": "2025-05-09T13:07:47.966426Z",
+        "modifiedAt": "2025-05-09T13:07:47.966426Z"
+    },
+    "status": "ACTIVE",
+    "tag": "admin-tag",
+    "createdAt": "2025-05-09T15:47:18.536334700Z",
+    "modifiedAt": "2025-05-09T15:47:18.536334700Z"
+}
+
+GET:
+=========
+
+URL:
+
+http://localhost:8080/api/user-groups
+
+Response:
+
+[
+    {
+        "userGroupId": "ug001",
+        "userGroupName": "Admin Group",
+        "userProject": {
+            "userProjectId": "up001",
+            "name": "Internal Dashboard Testing",
+            "description": "Project for internal tooling and analytics",
+            "createdAt": "2025-05-09T12:59:58.605222Z",
+            "modifiedAt": "2025-05-09T12:59:58.605222Z"
+        },
+        "vendorProject": {
+            "vendorProjectId": "vp001",
+            "projectName": "Third-Party Analytics",
+            "dataType": "Healthcare",
+            "tag": "analytics",
+            "vendorType": "External",
+            "startDate": "2024-01-01T00:00:00Z",
+            "endDate": "2024-12-31T23:59:59Z",
+            "createdAt": "2025-05-09T13:07:47.966426Z",
+            "modifiedAt": "2025-05-09T13:07:47.966426Z"
+        },
+        "status": "ACTIVE",
+        "tag": "admin-tag",
+        "createdAt": "2025-05-09T15:47:18.536335Z",
+        "modifiedAt": "2025-05-09T15:47:18.536335Z"
+    }
+]
+
+GET By ID:
+=============
+
+URL:
+
+http://localhost:8080/api/user-groups/ug001
+
+Response:
+
+{
+    "userGroupId": "ug001",
+    "userGroupName": "Admin Group",
+    "userProject": {
+        "userProjectId": "up001",
+        "name": "Internal Dashboard Testing",
+        "description": "Project for internal tooling and analytics",
+        "createdAt": "2025-05-09T12:59:58.605222Z",
+        "modifiedAt": "2025-05-09T12:59:58.605222Z"
+    },
+    "vendorProject": {
+        "vendorProjectId": "vp001",
+        "projectName": "Third-Party Analytics",
+        "dataType": "Healthcare",
+        "tag": "analytics",
+        "vendorType": "External",
+        "startDate": "2024-01-01T00:00:00Z",
+        "endDate": "2024-12-31T23:59:59Z",
+        "createdAt": "2025-05-09T13:07:47.966426Z",
+        "modifiedAt": "2025-05-09T13:07:47.966426Z"
+    },
+    "status": "ACTIVE",
+    "tag": "admin-tag",
+    "createdAt": "2025-05-09T15:47:18.536335Z",
+    "modifiedAt": "2025-05-09T15:47:18.536335Z"
+}
+
+PUT:
+=======
+
+
+URL:
+
+http://localhost:8080/api/user-groups/ug002
+
+Request Body:
+
+{
+  "userGroupId": "ug002",
+  "userGroupName": "Admin Group1",
+  "userProject": {
+    "userProjectId": "up001"
+  },
+  "vendorProject": {
+    "vendorProjectId": "vp001"
+  },
+  "status": "ACTIVE",
+  "tag": "admin-tag"
+}
+
+Response:
+
+{
+    "userGroupId": "ug002",
+    "userGroupName": "Admin Group1",
+    "userProject": {
+        "userProjectId": "up001",
+        "name": null,
+        "description": null,
+        "createdAt": "2025-05-09T15:55:41.608433600Z",
+        "modifiedAt": "2025-05-09T15:55:41.608433600Z"
+    },
+    "vendorProject": {
+        "vendorProjectId": "vp001",
+        "projectName": null,
+        "dataType": null,
+        "tag": null,
+        "vendorType": null,
+        "startDate": null,
+        "endDate": null,
+        "createdAt": "2025-05-09T15:55:41.608433600Z",
+        "modifiedAt": "2025-05-09T15:55:41.608433600Z"
+    },
+    "status": "ACTIVE",
+    "tag": "admin-tag",
+    "createdAt": "2025-05-09T15:54:24.311206Z",
+    "modifiedAt": "2025-05-09T15:55:41.608433600Z"
+}
+
+
+DELETE:
+===========
+
+URL:
+
+http://localhost:8080/api/user-groups/ug002
+
+Response:
+
+
+Project Mapping:
+--------------------------
+
+POST:
+=========
+
+http://localhost:8080/api/project-mappings
+
+Request Body:
+
+{
+  "projectMappingId": "pm001",
+  "userProject": {
+    "userProjectId": "up001"
+  },
+  "vendorProject": {
+    "vendorProjectId": "vp001"
+  },
+  "tag": "alpha",
+  "metadata": {
+    "source": "system",
+    "version": 1
+  }
+}
+
+
+Response:
+
+{
+    "projectMappingId": "pm001",
+    "userProject": {
+        "userProjectId": "up001",
+        "name": "Internal Dashboard Testing",
+        "description": "Project for internal tooling and analytics",
+        "createdAt": "2025-05-09T12:59:58.605222Z",
+        "modifiedAt": "2025-05-09T12:59:58.605222Z"
+    },
+    "vendorProject": {
+        "vendorProjectId": "vp001",
+        "projectName": "Third-Party Analytics",
+        "dataType": "Healthcare",
+        "tag": "analytics",
+        "vendorType": "External",
+        "startDate": "2024-01-01T00:00:00Z",
+        "endDate": "2024-12-31T23:59:59Z",
+        "createdAt": "2025-05-09T13:07:47.966426Z",
+        "modifiedAt": "2025-05-09T13:07:47.966426Z"
+    },
+    "tag": "alpha",
+    "metadata": {
+        "source": "system",
+        "version": 1
+    },
+    "createdAt": "2025-05-09T17:25:35.806022600Z",
+    "modifiedAt": "2025-05-09T17:25:35.806022600Z"
+}
+
+GET:
+=======
+
+URL:
+
+http://localhost:8080/api/project-mappings
+
+Response:
+
+[
+    {
+        "projectMappingId": "pm001",
+        "userProject": {
+            "userProjectId": "up001",
+            "name": "Internal Dashboard Testing",
+            "description": "Project for internal tooling and analytics",
+            "createdAt": "2025-05-09T12:59:58.605222Z",
+            "modifiedAt": "2025-05-09T12:59:58.605222Z"
+        },
+        "vendorProject": {
+            "vendorProjectId": "vp001",
+            "projectName": "Third-Party Analytics",
+            "dataType": "Healthcare",
+            "tag": "analytics",
+            "vendorType": "External",
+            "startDate": "2024-01-01T00:00:00Z",
+            "endDate": "2024-12-31T23:59:59Z",
+            "createdAt": "2025-05-09T13:07:47.966426Z",
+            "modifiedAt": "2025-05-09T13:07:47.966426Z"
+        },
+        "tag": "alpha",
+        "metadata": {
+            "source": "system",
+            "version": 1
+        },
+        "createdAt": "2025-05-09T17:25:35.806023Z",
+        "modifiedAt": "2025-05-09T17:25:35.806023Z"
+    }
+]
+
+GET By ID:
+==============
+
+URL;
+
+http://localhost:8080/api/project-mappings/pm002
+
+Response:
+
+{
+    "projectMappingId": "pm002",
+    "userProject": {
+        "userProjectId": "up001",
+        "name": "Internal Dashboard Testing",
+        "description": "Project for internal tooling and analytics",
+        "createdAt": "2025-05-09T12:59:58.605222Z",
+        "modifiedAt": "2025-05-09T12:59:58.605222Z"
+    },
+    "vendorProject": {
+        "vendorProjectId": "vp001",
+        "projectName": "Third-Party Analytics",
+        "dataType": "Healthcare",
+        "tag": "analytics",
+        "vendorType": "External",
+        "startDate": "2024-01-01T00:00:00Z",
+        "endDate": "2024-12-31T23:59:59Z",
+        "createdAt": "2025-05-09T13:07:47.966426Z",
+        "modifiedAt": "2025-05-09T13:07:47.966426Z"
+    },
+    "tag": "beta",
+    "metadata": {
+        "source": "system",
+        "version": 2
+    },
+    "createdAt": "2025-05-09T17:29:33.733795Z",
+    "modifiedAt": "2025-05-09T17:29:33.733795Z"
+}
+
+PUT:
+===========
+
+URL:
+
+http://localhost:8080/api/project-mappings/pm002
+
+Request Body:
+
+{
+  "projectMappingId": "pm002",
+  "userProject": {
+    "userProjectId": "up001"
+  },
+  "vendorProject": {
+    "vendorProjectId": "vp001"
+  },
+  "tag": "alpha",
+  "metadata": {
+    "source": "system1",
+    "version": 1
+  }
+}
+
+Response:
+
+{
+    "projectMappingId": "pm002",
+    "userProject": {
+        "userProjectId": "up001",
+        "name": null,
+        "description": null,
+        "createdAt": "2025-05-09T17:32:16.647977Z",
+        "modifiedAt": "2025-05-09T17:32:16.647977Z"
+    },
+    "vendorProject": {
+        "vendorProjectId": "vp001",
+        "projectName": null,
+        "dataType": null,
+        "tag": null,
+        "vendorType": null,
+        "startDate": null,
+        "endDate": null,
+        "createdAt": "2025-05-09T17:32:16.647977Z",
+        "modifiedAt": "2025-05-09T17:32:16.647977Z"
+    },
+    "tag": "alpha",
+    "metadata": {
+        "source": "system1",
+        "version": 1
+    },
+    "createdAt": "2025-05-09T17:29:33.733795Z",
+    "modifiedAt": "2025-05-09T17:32:16.646979700Z"
+}
+
+
+DELETE:
+============
+
+URL:
+
+http://localhost:8080/api/project-mappings/pm002
+
+Response:
+
+
+UAIS Project:
+--------------------------
+
+POST:
+========
+
+URL:
+
+http://localhost:8080/api/uais-projects
+
+Request Body:
+
+{
+  "uaisProjectId": "12345",
+  "projectName": "AI Model Development",
+  "description": "This project focuses on the development of advanced AI models for healthcare applications.",
+  "aide": "AI for Healthcare",
+  "workspace": {
+    "workspaceId": "ws001"
+  },
+  "metadata": {
+        "source": "system1",
+        "version": 1
+    },
+	"createdAt": "2025-05-09T00:00:00Z",
+    "modifiedAt": "2025-05-09T00:00:00Z"
+}
+
+
+Response:
+
+{
+    "uaisProjectId": "12345",
+    "projectName": "AI Model Development",
+    "description": "This project focuses on the development of advanced AI models for healthcare applications.",
+    "aide": "AI for Healthcare",
+    "workspace": {
+        "workspaceId": "ws001",
+        "workspaceName": "Development Workspace",
+        "description": "Main workspace for backend development",
+        "status": null,
+        "createdAt": "2025-05-08T17:14:49.468181Z",
+        "modifiedAt": "2025-05-08T17:14:49.468181Z"
+    },
+    "metadata": {
+        "source": "system1",
+        "version": 1
+    },
+    "createdAt": "2025-05-09T00:00:00Z",
+    "modifiedAt": "2025-05-09T00:00:00Z"
+}
+
+GET:
+=========
+
+URL:
+
+http://localhost:8080/api/uais-projects
+
+Response:
+
+[
+    {
+        "uaisProjectId": "12345",
+        "projectName": "AI Model Development",
+        "description": "This project focuses on the development of advanced AI models for healthcare applications.",
+        "aide": "AI for Healthcare",
+        "workspace": {
+            "workspaceId": "ws001",
+            "workspaceName": "Development Workspace",
+            "description": "Main workspace for backend development",
+            "status": null,
+            "createdAt": "2025-05-08T17:14:49.468181Z",
+            "modifiedAt": "2025-05-08T17:14:49.468181Z"
+        },
+        "metadata": {
+            "source": "system1",
+            "version": 1
+        },
+        "createdAt": null,
+        "modifiedAt": null
+    },
+    {
+        "uaisProjectId": "12346",
+        "projectName": "AI Model Development",
+        "description": "This project focuses on the development of advanced AI models for healthcare applications.",
+        "aide": "AI for Healthcare",
+        "workspace": {
+            "workspaceId": "ws001",
+            "workspaceName": "Development Workspace",
+            "description": "Main workspace for backend development",
+            "status": null,
+            "createdAt": "2025-05-08T17:14:49.468181Z",
+            "modifiedAt": "2025-05-08T17:14:49.468181Z"
+        },
+        "metadata": {
+            "source": "system1",
+            "version": 1
+        },
+        "createdAt": "2025-05-09T00:00:00Z",
+        "modifiedAt": "2025-05-09T00:00:00Z"
+    }
+]
+
+
+GET By ID:
+=============
+
+URL:
+
+http://localhost:8080/api/uais-projects/12346
+
+Response:
+
+{
+    "uaisProjectId": "12346",
+    "projectName": "AI Model Development",
+    "description": "This project focuses on the development of advanced AI models for healthcare applications.",
+    "aide": "AI for Healthcare",
+    "workspace": {
+        "workspaceId": "ws001",
+        "workspaceName": "Development Workspace",
+        "description": "Main workspace for backend development",
+        "status": null,
+        "createdAt": "2025-05-08T17:14:49.468181Z",
+        "modifiedAt": "2025-05-08T17:14:49.468181Z"
+    },
+    "metadata": {
+        "source": "system1",
+        "version": 1
+    },
+    "createdAt": "2025-05-09T00:00:00Z",
+    "modifiedAt": "2025-05-09T00:00:00Z"
+}
+
+PUT:
+=========
+
+URL:
+
+http://localhost:8080/api/uais-projects/12346
+
+Request Body:
+
+{
+  "uaisProjectId": "12346",
+  "projectName": "AI Model Development",
+  "description": "This project focuses on the development of advanced AI models for healthcare applications testing.",
+  "aide": "AI for Healthcare",
+  "workspace": {
+    "workspaceId": "ws001"
+  },
+  "metadata": {
+        "source": "system1",
+        "version": 1
+    },
+	"createdAt": "2025-05-09T00:00:00Z",
+    "modifiedAt": "2025-05-09T00:00:00Z"
+}
+
+Response:
+
+{
+    "uaisProjectId": "12346",
+    "projectName": "AI Model Development",
+    "description": "This project focuses on the development of advanced AI models for healthcare applications testing.",
+    "aide": "AI for Healthcare",
+    "workspace": {
+        "workspaceId": "ws001",
+        "workspaceName": "Development Workspace",
+        "description": "Main workspace for backend development",
+        "status": null,
+        "createdAt": "2025-05-08T17:14:49.468181Z",
+        "modifiedAt": "2025-05-08T17:14:49.468181Z"
+    },
+    "metadata": {
+        "source": "system1",
+        "version": 1
+    },
+    "createdAt": "2025-05-09T00:00:00Z",
+    "modifiedAt": "2025-05-09T00:00:00Z"
+}
+
+DELETE:
+============
+
+URL;
+
+http://localhost:8080/api/uais-projects/12346
+
+Response:
+
+
+Labelbox Project:
+====================
+
+POST:
+========
+
+URL:
+
+http://localhost:8080/api/labelbox-projects
+
+
+Request Body:
+
+{
+  "labelboxProjectId": "lbp001",
+  "userProject": {
+    "userProjectId": "up001"
+  },
+  "lbProjectId": "external-lb-id-789",
+  "createdAt": "2025-05-09T00:00:00Z",
+  "modifiedAt": "2025-05-09T00:00:00Z"
+}
+
+Response:
+
+{
+    "labelboxProjectId": "lbp001",
+    "userProject": {
+        "userProjectId": "up001",
+        "name": "Internal Dashboard Testing",
+        "description": "Project for internal tooling and analytics",
+        "createdAt": "2025-05-09T12:59:58.605222Z",
+        "modifiedAt": "2025-05-09T12:59:58.605222Z"
+    },
+    "lbProjectId": "external-lb-id-789",
+    "createdAt": "2025-05-09T00:00:00Z",
+    "modifiedAt": "2025-05-09T00:00:00Z"
+}
+
+GET:
+=========
+
+URL:
+
+http://localhost:8080/api/labelbox-projects
+
+Response:
+
+[
+    {
+        "labelboxProjectId": "lbp001",
+        "userProject": {
+            "userProjectId": "up001",
+            "name": "Internal Dashboard Testing",
+            "description": "Project for internal tooling and analytics",
+            "createdAt": "2025-05-09T12:59:58.605222Z",
+            "modifiedAt": "2025-05-09T12:59:58.605222Z"
+        },
+        "lbProjectId": "external-lb-id-789",
+        "createdAt": "2025-05-09T00:00:00Z",
+        "modifiedAt": "2025-05-09T00:00:00Z"
+    }
+]
+
+GET By ID:
+==============
+
+URL:
+
+http://localhost:8080/api/labelbox-projects/lbp001
+
+Response:
+
+{
+    "labelboxProjectId": "lbp001",
+    "userProject": {
+        "userProjectId": "up001",
+        "name": "Internal Dashboard Testing",
+        "description": "Project for internal tooling and analytics",
+        "createdAt": "2025-05-09T12:59:58.605222Z",
+        "modifiedAt": "2025-05-09T12:59:58.605222Z"
+    },
+    "lbProjectId": "external-lb-id-789",
+    "createdAt": "2025-05-09T00:00:00Z",
+    "modifiedAt": "2025-05-09T00:00:00Z"
+}
+
+
+PUT:
+==========
+
+URL:
+
+http://localhost:8080/api/labelbox-projects/lbp002
+
+Request Body:
+
+{
+  "userProject": {
+    "userProjectId": "up001"
+  },
+  "lbProjectId": "external1-lb-id-790",
+  "createdAt": "2025-05-09T00:00:00Z",
+  "modifiedAt": "2025-05-09T00:00:00Z"
+}
+
+Response:
+
+{
+    "labelboxProjectId": "lbp002",
+    "userProject": {
+        "userProjectId": "up001",
+        "name": null,
+        "description": null,
+        "createdAt": "2025-05-09T18:12:50.108848900Z",
+        "modifiedAt": "2025-05-09T18:12:50.108848900Z"
+    },
+    "lbProjectId": "external1-lb-id-790",
+    "createdAt": "2025-05-09T00:00:00Z",
+    "modifiedAt": "2025-05-09T00:00:00Z"
+}
+
+DELETE:
+=========
+
+URL:
+
+http://localhost:8080/api/labelbox-projects/lbp002
+
+Response:
+
