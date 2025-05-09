@@ -271,3 +271,225 @@ URL:
 http://localhost:8080/api/users/user567
 
 
+
+
+User Project:
+-------------------------------
+
+POST:
+========
+
+URL:
+
+http://localhost:8080/api/user-projects
+
+Request Body:
+
+{
+  "userProjectId": "up001",
+  "name": "Internal Dashboard",
+  "description": "Project for internal tooling and analytics"
+}
+
+Response:
+
+{
+    "userProjectId": "up001",
+    "name": "Internal Dashboard",
+    "description": "Project for internal tooling and analytics",
+    "createdAt": "2025-05-09T12:59:58.605222300Z",
+    "modifiedAt": "2025-05-09T12:59:58.605222300Z"
+}
+
+
+GET:
+===========
+
+URL:
+
+http://localhost:8080/api/user-projects
+
+Response:
+
+[
+    {
+        "userProjectId": "up001",
+        "name": "Internal Dashboard",
+        "description": "Project for internal tooling and analytics",
+        "createdAt": "2025-05-09T12:59:58.605222Z",
+        "modifiedAt": "2025-05-09T12:59:58.605222Z"
+    }
+]
+
+
+GET By ID:
+===============
+
+URL:
+
+http://localhost:8080/api/user-projects/up001
+
+Response:
+
+{
+    "userProjectId": "up001",
+    "name": "Internal Dashboard",
+    "description": "Project for internal tooling and analytics",
+    "createdAt": "2025-05-09T12:59:58.605222Z",
+    "modifiedAt": "2025-05-09T12:59:58.605222Z"
+}
+
+PUT:
+===========
+
+URL:
+
+http://localhost:8080/api/user-projects/up001
+
+Request Body:
+
+{
+    "userProjectId": "up001",
+    "name": "Internal Dashboard Testing",
+    "description": "Project for internal tooling and analytics",
+    "createdAt": "2025-05-09T12:59:58.605222Z",
+    "modifiedAt": "2025-05-09T12:59:58.605222Z"
+}
+
+DELETE:
+==========
+
+URL:
+
+http://localhost:8080/api/user-projects/up002
+
+Response:
+
+
+Vendor Project:
+--------------------------------------------------
+
+POST:
+======
+
+URL:
+
+http://localhost:8080/api/vendor-projects
+
+
+Request Body:
+
+{
+  "vendorProjectId": "vp001",
+  "projectName": "Third-Party Analytics",
+  "dataType": "Healthcare",
+  "tag": "analytics",
+  "vendorType": "External",
+  "startDate": "2024-01-01T00:00:00Z",
+  "endDate": "2024-12-31T23:59:59Z"
+}
+
+Response:
+
+{
+    "vendorProjectId": "vp001",
+    "projectName": "Third-Party Analytics",
+    "dataType": "Healthcare",
+    "tag": "analytics",
+    "vendorType": "External",
+    "startDate": "2024-01-01T00:00:00Z",
+    "endDate": "2024-12-31T23:59:59Z",
+    "createdAt": "2025-05-09T13:07:47.966425800Z",
+    "modifiedAt": "2025-05-09T13:07:47.966425800Z"
+}
+
+
+GET:
+=======
+
+URL:
+
+http://localhost:8080/api/vendor-projects
+
+Response:
+
+[
+    {
+        "vendorProjectId": "vp001",
+        "projectName": "Third-Party Analytics",
+        "dataType": "Healthcare",
+        "tag": "analytics",
+        "vendorType": "External",
+        "startDate": "2024-01-01T00:00:00Z",
+        "endDate": "2024-12-31T23:59:59Z",
+        "createdAt": "2025-05-09T13:07:47.966426Z",
+        "modifiedAt": "2025-05-09T13:07:47.966426Z"
+    }
+]
+
+
+GET By ID:
+=================
+
+
+URL:
+
+http://localhost:8080/api/vendor-projects/vp002
+
+
+Response:
+
+{
+    "vendorProjectId": "vp002",
+    "projectName": "Third-Party Analytics",
+    "dataType": "Healthcare",
+    "tag": "analytics",
+    "vendorType": "Internal",
+    "startDate": "2024-01-01T00:00:00Z",
+    "endDate": "2024-12-31T23:59:59Z",
+    "createdAt": "2025-05-09T13:09:24.746509Z",
+    "modifiedAt": "2025-05-09T13:09:24.746509Z"
+}
+
+
+PUT:
+==========
+
+URL:
+
+http://localhost:8080/api/vendor-projects/vp002
+
+Request Body:
+
+{
+  "vendorProjectId": "vp002",
+  "projectName": "Third-Party Analytics testing",
+  "dataType": "Healthcare",
+  "tag": "analytics",
+  "vendorType": "External",
+  "startDate": "2024-01-01T00:00:00Z",
+  "endDate": "2024-12-31T23:59:59Z"
+}
+
+Response:
+
+{
+    "vendorProjectId": "vp002",
+    "projectName": "Third-Party Analytics testing",
+    "dataType": "Healthcare",
+    "tag": "analytics",
+    "vendorType": "External",
+    "startDate": "2024-01-01T00:00:00Z",
+    "endDate": "2024-12-31T23:59:59Z",
+    "createdAt": "2025-05-09T13:09:24.746509Z",
+    "modifiedAt": "2025-05-09T13:11:30.110538300Z"
+}
+
+DELETE:
+===========
+
+URL:
+
+http://localhost:8080/api/vendor-projects/vp002
+
+Response:
