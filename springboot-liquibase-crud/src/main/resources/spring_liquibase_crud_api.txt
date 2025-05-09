@@ -85,7 +85,7 @@ http://localhost:8080/api/workspaces/ws003
 Request Body:
 
 {
-  "name": "Development Workspace",
+  "workspaceName": "Development Workspace",
   "description": "Main workspace for backend development testing"
 }
 
