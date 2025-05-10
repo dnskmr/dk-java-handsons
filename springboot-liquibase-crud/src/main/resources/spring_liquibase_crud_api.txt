@@ -273,7 +273,7 @@ http://localhost:8080/api/users/user567
 
 
 
-User Project:
+UserProject Controller:
 -------------------------------
 
 POST:
@@ -366,7 +366,7 @@ http://localhost:8080/api/user-projects/up002
 Response:
 
 
-Vendor Project:
+VendorProject Controller:
 --------------------------------------------------
 
 POST:
@@ -495,7 +495,7 @@ http://localhost:8080/api/vendor-projects/vp002
 Response:
 
 
-User Group:
+UserGroup Controller:
 --------------------------------------------
 
 POST:
@@ -686,7 +686,7 @@ http://localhost:8080/api/user-groups/ug002
 Response:
 
 
-Project Mapping:
+ProjectMappings Controller:
 --------------------------
 
 POST:
@@ -887,7 +887,7 @@ http://localhost:8080/api/project-mappings/pm002
 Response:
 
 
-UAIS Project:
+UAISProject Controller:
 --------------------------
 
 POST:
@@ -1080,7 +1080,7 @@ http://localhost:8080/api/uais-projects/12346
 Response:
 
 
-Labelbox Project:
+LabelboxProject Controller:
 ====================
 
 POST:
