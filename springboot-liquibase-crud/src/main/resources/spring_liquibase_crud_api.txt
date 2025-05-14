@@ -1211,3 +1211,262 @@ http://localhost:8080/api/labelbox-projects/lbp002
 
 Response:
 
+
+GroupMembership Controller:
+============================
+
+
+POST:
+======
+
+http://localhost:8080/api/group-memberships
+
+Request Body:
+
+{
+  "groupMembershipId": "gm001",
+  "userGroup": {
+    "userGroupId": "ug001"
+  },
+  "user": {
+    "userId": "user123"
+  },
+  "createdAt": "2025-05-14T08:00:00Z",
+  "modifiedAt": "2025-05-14T08:00:00Z"
+}
+
+Response:
+
+{
+    "groupMembershipId": "gm001",
+    "userGroup": {
+        "userGroupId": "ug001",
+        "userGroupName": "Admin Group",
+        "userProject": {
+            "userProjectId": "up001",
+            "name": "Internal Dashboard Testing",
+            "description": "Project for internal tooling and analytics",
+            "createdAt": "2025-05-09T12:59:58.605222Z",
+            "modifiedAt": "2025-05-09T12:59:58.605222Z"
+        },
+        "vendorProject": {
+            "vendorProjectId": "vp001",
+            "projectName": "Third-Party Analytics",
+            "dataType": "Healthcare",
+            "tag": "analytics",
+            "vendorType": "External",
+            "startDate": "2024-01-01T00:00:00Z",
+            "endDate": "2024-12-31T23:59:59Z",
+            "createdAt": "2025-05-09T13:07:47.966426Z",
+            "modifiedAt": "2025-05-09T13:07:47.966426Z"
+        },
+        "status": "ACTIVE",
+        "tag": "admin-tag",
+        "createdAt": "2025-05-09T15:47:18.536335Z",
+        "modifiedAt": "2025-05-09T15:47:18.536335Z"
+    },
+    "user": {
+        "userId": "user123",
+        "workspace": {
+            "workspaceId": "ws001",
+            "workspaceName": "Development Workspace",
+            "description": "Main workspace for backend development",
+            "status": null,
+            "createdAt": "2025-05-08T17:14:49.468181Z",
+            "modifiedAt": "2025-05-08T17:14:49.468181Z"
+        },
+        "userName": "John Doere",
+        "email": "john.doe@example.com",
+        "password": "$2a$10$0iuOh0MfKzSjNrkbt9VV4eP4HUvj5h205NsPeutsoTeRedLihfDqa",
+        "role": "ROLE_ADMIN",
+        "status": "Active",
+        "createdAt": "2025-05-08T17:38:02.564339Z",
+        "modifiedAt": "2025-05-08T17:56:38.136878Z"
+    },
+    "createdAt": "2025-05-14T08:00:00Z",
+    "modifiedAt": "2025-05-14T08:00:00Z"
+}
+
+
+GET:
+======
+
+URL:
+
+http://localhost:8080/api/group-memberships
+
+
+Response:
+
+[
+    {
+        "groupMembershipId": "gm001",
+        "userGroup": {
+            "userGroupId": "ug001",
+            "userGroupName": "Admin Group",
+            "userProject": {
+                "userProjectId": "up001",
+                "name": "Internal Dashboard Testing",
+                "description": "Project for internal tooling and analytics",
+                "createdAt": "2025-05-09T12:59:58.605222Z",
+                "modifiedAt": "2025-05-09T12:59:58.605222Z"
+            },
+            "vendorProject": {
+                "vendorProjectId": "vp001",
+                "projectName": "Third-Party Analytics",
+                "dataType": "Healthcare",
+                "tag": "analytics",
+                "vendorType": "External",
+                "startDate": "2024-01-01T00:00:00Z",
+                "endDate": "2024-12-31T23:59:59Z",
+                "createdAt": "2025-05-09T13:07:47.966426Z",
+                "modifiedAt": "2025-05-09T13:07:47.966426Z"
+            },
+            "status": "ACTIVE",
+            "tag": "admin-tag",
+            "createdAt": "2025-05-09T15:47:18.536335Z",
+            "modifiedAt": "2025-05-09T15:47:18.536335Z"
+        },
+        "user": {
+            "userId": "user123",
+            "workspace": {
+                "workspaceId": "ws001",
+                "workspaceName": "Development Workspace",
+                "description": "Main workspace for backend development",
+                "status": null,
+                "createdAt": "2025-05-08T17:14:49.468181Z",
+                "modifiedAt": "2025-05-08T17:14:49.468181Z"
+            },
+            "userName": "John Doere",
+            "email": "john.doe@example.com",
+            "password": "$2a$10$0iuOh0MfKzSjNrkbt9VV4eP4HUvj5h205NsPeutsoTeRedLihfDqa",
+            "role": "ROLE_ADMIN",
+            "status": "Active",
+            "createdAt": "2025-05-08T17:38:02.564339Z",
+            "modifiedAt": "2025-05-08T17:56:38.136878Z"
+        },
+        "createdAt": "2025-05-14T08:00:00Z",
+        "modifiedAt": "2025-05-14T08:00:00Z"
+    }
+]
+
+
+Get By ID:
+================
+
+URL:
+
+http://localhost:8080/api/group-memberships/gm002
+
+Response:
+
+{
+    "groupMembershipId": "gm002",
+    "userGroup": {
+        "userGroupId": "ug001",
+        "userGroupName": "Admin Group",
+        "userProject": {
+            "userProjectId": "up001",
+            "name": "Internal Dashboard Testing",
+            "description": "Project for internal tooling and analytics",
+            "createdAt": "2025-05-09T12:59:58.605222Z",
+            "modifiedAt": "2025-05-09T12:59:58.605222Z"
+        },
+        "vendorProject": {
+            "vendorProjectId": "vp001",
+            "projectName": "Third-Party Analytics",
+            "dataType": "Healthcare",
+            "tag": "analytics",
+            "vendorType": "External",
+            "startDate": "2024-01-01T00:00:00Z",
+            "endDate": "2024-12-31T23:59:59Z",
+            "createdAt": "2025-05-09T13:07:47.966426Z",
+            "modifiedAt": "2025-05-09T13:07:47.966426Z"
+        },
+        "status": "ACTIVE",
+        "tag": "admin-tag",
+        "createdAt": "2025-05-09T15:47:18.536335Z",
+        "modifiedAt": "2025-05-09T15:47:18.536335Z"
+    },
+    "user": {
+        "userId": "user123",
+        "workspace": {
+            "workspaceId": "ws001",
+            "workspaceName": "Development Workspace",
+            "description": "Main workspace for backend development",
+            "status": null,
+            "createdAt": "2025-05-08T17:14:49.468181Z",
+            "modifiedAt": "2025-05-08T17:14:49.468181Z"
+        },
+        "userName": "John Doere",
+        "email": "john.doe@example.com",
+        "password": "$2a$10$0iuOh0MfKzSjNrkbt9VV4eP4HUvj5h205NsPeutsoTeRedLihfDqa",
+        "role": "ROLE_ADMIN",
+        "status": "Active",
+        "createdAt": "2025-05-08T17:38:02.564339Z",
+        "modifiedAt": "2025-05-08T17:56:38.136878Z"
+    },
+    "createdAt": "2025-05-14T08:00:00Z",
+    "modifiedAt": "2025-05-14T08:00:00Z"
+}
+
+
+PUT:
+========
+
+
+URL:
+
+http://localhost:8080/api/group-memberships/gm002
+
+Request Body:
+
+{
+  "groupMembershipId": "gm002",
+  "userGroup": {
+    "userGroupId": "ug001"
+  },
+  "user": {
+    "userId": "user123"
+  },
+  "createdAt": "2025-05-14T08:00:00Z",
+  "modifiedAt": "2025-05-14T08:00:00Z"
+}
+
+Response:
+
+{
+    "groupMembershipId": "gm002",
+    "userGroup": {
+        "userGroupId": "ug001",
+        "userGroupName": null,
+        "userProject": null,
+        "vendorProject": null,
+        "status": null,
+        "tag": null,
+        "createdAt": "2025-05-14T15:29:19.892819700Z",
+        "modifiedAt": "2025-05-14T15:29:19.892819700Z"
+    },
+    "user": {
+        "userId": "user123",
+        "workspace": null,
+        "userName": null,
+        "email": null,
+        "password": null,
+        "role": null,
+        "status": null,
+        "createdAt": "2025-05-14T15:29:19.893821500Z",
+        "modifiedAt": "2025-05-14T15:29:19.893821500Z"
+    },
+    "createdAt": "2025-05-14T08:00:00Z",
+    "modifiedAt": "2025-05-14T08:00:00Z"
+}
+
+DELETE:
+==================
+
+URL:
+
+http://localhost:8080/api/group-memberships/gm002
+
+Response:
