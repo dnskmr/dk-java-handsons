@@ -1,6 +1,7 @@
 package com.optum.controller;
 
 import com.optum.dto.User;
+import com.optum.dto.UserInfoResponse;
 import com.optum.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -42,4 +43,10 @@ public class UserController {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/info")
+    public ResponseEntity<UserInfoResponse> getUserInfoByEmail(@RequestParam String emailId) {
+        return ResponseEntity.ok(service.getUserInfoByEmail(emailId));
+    }
+
 }

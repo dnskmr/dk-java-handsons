@@ -1,12 +1,18 @@
 package com.optum.service;
 
+import com.optum.dto.GroupMembership;
 import com.optum.dto.User;
+import com.optum.dto.UserGroup;
+import com.optum.dto.UserInfoResponse;
+import com.optum.repository.GroupMembershipRepository;
+import com.optum.repository.UserGroupRepository;
 import com.optum.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,6 +21,12 @@ public class UserService {
 
     @Autowired
     private UserRepository repository;
+
+    @Autowired
+    private GroupMembershipRepository groupMembershipRepository;
+
+    @Autowired
+    private UserGroupRepository userGroupRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -62,5 +74,36 @@ public class UserService {
     private String normalizeRole(String role) {
         if (role == null) return null;
         return role.startsWith("ROLE_") ? role : "ROLE_" + role.toUpperCase();
+    }
+
+    public UserInfoResponse getUserInfoByEmail(String emailId) {
+        User user = repository.findByEmail(emailId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        List<GroupMembership> memberships = groupMembershipRepository.findByUser_UserId(user.getUserId());
+
+        List<UserInfoResponse.UserGroupInfo> userGroupInfos = new ArrayList<>();
+
+        for (GroupMembership membership : memberships) {
+            UserGroup group = userGroupRepository.findById(membership.getUserGroup().getUserGroupId())
+                    .orElseThrow(() -> new RuntimeException("UserGroup not found"));
+
+            UserInfoResponse.UserGroupInfo groupInfo = new UserInfoResponse.UserGroupInfo();
+            groupInfo.setUserGroupId(group.getUserGroupId());
+            groupInfo.setUserGroupName(group.getUserGroupName());
+            groupInfo.setUserProject(group.getUserProject());  // Assuming this is a List<UserProject>
+            groupInfo.setVendorProject(group.getVendorProject());  // Assuming this is a List<VendorProject>
+
+            userGroupInfos.add(groupInfo);
+        }
+
+        UserInfoResponse response = new UserInfoResponse();
+        response.setUserId(user.getUserId());
+        response.setUserName(user.getUserName());
+        response.setEmail(user.getEmail());
+        response.setWorkspace(user.getWorkspace());
+        response.setUserGroups(userGroupInfos);
+
+        return response;
     }
 }
