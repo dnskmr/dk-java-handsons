@@ -25,6 +25,12 @@ public class UserProject {
     @Column(name = "Description", columnDefinition = "TEXT")
     private String description;
 
+    @Column(name = "Type", columnDefinition = "TEXT")
+    private String type;
+
+    @Column(name = "Status", columnDefinition = "TEXT")
+    private String status;
+
     @Column(name = "CreatedAt")
     private Instant createdAt = Instant.now();
 

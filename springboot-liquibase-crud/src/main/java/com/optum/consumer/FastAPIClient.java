@@ -1,5 +1,6 @@
 package com.optum.consumer;
 
+import com.optum.dto.LabelboxProject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -16,14 +17,8 @@ public class FastAPIClient {
     private String fastApiUrl;
     private final RestTemplate restTemplate = new RestTemplate();
 
-    public String createLabelboxProject(HcpEventPayload.ResourceDefinition definition) {
-
-        // Prepare request
-        Map<String, Object> request = new HashMap<>();
-        request.put("projectName", definition.getProjectName());
-        request.put("dataType", definition.getDataType());
-
-        ResponseEntity<Map> response = restTemplate.postForEntity(fastApiUrl, request, Map.class);
+    public String createLabelboxProject(LabelboxProject labelboxProject) {
+        ResponseEntity<Map> response = restTemplate.postForEntity(fastApiUrl, labelboxProject, Map.class);
         if (response.getStatusCode().is2xxSuccessful() && response.getBody() != null) {
             return (String) response.getBody().get("lbProjectId");
         }

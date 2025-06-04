@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import com.optum.consumer.FastAPIClient;
 import com.optum.dto.HcpEventPayload;
+import com.optum.dto.LabelboxProject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpMethod;
@@ -35,9 +36,10 @@ public class FastAPIClientTest {
     @Test
     void testCreateLabelboxProject_success() {
         // Arrange
-        HcpEventPayload.ResourceDefinition def = new HcpEventPayload.ResourceDefinition();
-        def.setProjectName("Test Project");
-        def.setDataType("image");
+        LabelboxProject labelboxProject = new LabelboxProject();
+        labelboxProject.setProjectName("Test Project");
+        labelboxProject.setDataType("image");
+        labelboxProject.setLabelboxProjectId("lb-123");
 
         mockServer.expect(MockRestRequestMatchers.requestTo(fastApiUrl))
                 .andExpect(MockRestRequestMatchers.method(HttpMethod.POST))
@@ -45,7 +47,7 @@ public class FastAPIClientTest {
                         "{\"lbProjectId\": \"lb-123\"}", APPLICATION_JSON));
 
         // Act
-        String lbProjectId = fastAPIClient.createLabelboxProject(def);
+        String lbProjectId = fastAPIClient.createLabelboxProject(labelboxProject);
 
         // Assert
         assertEquals("lb-123", lbProjectId);
@@ -55,9 +57,10 @@ public class FastAPIClientTest {
     @Test
     void testCreateLabelboxProject_failure() {
         // Arrange
-        HcpEventPayload.ResourceDefinition def = new HcpEventPayload.ResourceDefinition();
-        def.setProjectName("Test Project");
-        def.setDataType("image");
+        LabelboxProject labelboxProject = new LabelboxProject();
+        labelboxProject.setProjectName("Test Project");
+        labelboxProject.setDataType("image");
+        labelboxProject.setLabelboxProjectId("lb-123");
 
         mockServer.expect(MockRestRequestMatchers.requestTo(fastApiUrl))
                 .andExpect(MockRestRequestMatchers.method(HttpMethod.POST))
@@ -65,7 +68,7 @@ public class FastAPIClientTest {
 
         // Act + Assert
         assertThrows(RuntimeException.class, () -> {
-            fastAPIClient.createLabelboxProject(def);
+            fastAPIClient.createLabelboxProject(labelboxProject);
         });
 
         mockServer.verify();

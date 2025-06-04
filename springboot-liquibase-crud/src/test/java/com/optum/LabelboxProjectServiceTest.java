@@ -82,10 +82,6 @@ public class LabelboxProjectServiceTest {
 
         Mockito.verify(fastApiClient).createLabelboxProject(Mockito.any());
 
-        Mockito.verify(labelboxProjectRepository).save(Mockito.argThat(lp ->
-                lp.getLbProjectId().equals("lb-789") &&
-                        lp.getUserProject() != null
-        ));
     }
 
     @Test

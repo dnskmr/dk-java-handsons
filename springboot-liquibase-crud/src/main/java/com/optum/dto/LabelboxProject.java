@@ -17,12 +17,20 @@ public class LabelboxProject {
     @Column(name = "LabelboxProjectId", nullable = false, length = 255)
     private String labelboxProjectId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "UserProjectId", referencedColumnName = "UserProjectId")
-    private UserProject userProject;
+    @Column(name = "ProjectName", nullable = false, length = 255)
+    private String projectName;
 
-    @Column(name = "LbProjectId", length = 255)
-    private String lbProjectId;
+    @Column(name = "DataType", length = 255)
+    private String dataType;
+
+    @Column(name = "Tag", length = 255)
+    private String tag;
+
+    @Column(name = "Type", length = 255)
+    private String type;
+
+    @Column(name = "WorkspaceId", length = 255)
+    private String workspaceId;
 
     @Column(name = "CreatedAt")
     private Instant createdAt = Instant.now();
