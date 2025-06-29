@@ -13,7 +13,7 @@ import java.time.Instant;
 @AllArgsConstructor
 @Builder
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class User {
+public class Users {
 
     @Id
     @Column(name = "\"UserId\"", nullable = false, length = 255)

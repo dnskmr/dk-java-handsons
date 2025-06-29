@@ -17,7 +17,7 @@ public class LabelboxProject {
     @Column(name = "LabelboxProjectId", nullable = false, length = 255)
     private String labelboxProjectId;
 
-    @Column(name = "ProjectName", nullable = false, length = 255)
+    @Column(name = "ProjectName", nullable = true, length = 255)
     private String projectName;
 
     @Column(name = "DataType", length = 255)

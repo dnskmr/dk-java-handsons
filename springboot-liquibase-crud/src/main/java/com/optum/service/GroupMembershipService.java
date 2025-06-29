@@ -2,8 +2,6 @@ package com.optum.service;
 
 import com.optum.dto.GroupMembership;
 import com.optum.repository.GroupMembershipRepository;
-import com.optum.repository.UserGroupRepository;
-import com.optum.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,7 +35,7 @@ public class GroupMembershipService {
         existing.setUser(updated.getUser());
         existing.setUserGroup(updated.getUserGroup());
         existing.setCreatedAt(updated.getCreatedAt());
-        existing.setModifiedAt(updated.getModifiedAt());
+        existing.setUpdatedAt(updated.getUpdatedAt());
 
         return repository.save(existing);
     }

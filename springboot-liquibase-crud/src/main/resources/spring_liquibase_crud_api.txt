@@ -329,7 +329,7 @@ POST:
 
 URL:
 
-http://localhost:8080/api/user-projects
+http://localhost:8080/api/users-projects
 
 Request Body:
 
@@ -355,7 +355,7 @@ GET:
 
 URL:
 
-http://localhost:8080/api/user-projects
+http://localhost:8080/api/users-projects
 
 Response:
 
@@ -375,7 +375,7 @@ GET By ID:
 
 URL:
 
-http://localhost:8080/api/user-projects/up001
+http://localhost:8080/api/users-projects/up001
 
 Response:
 
@@ -392,7 +392,7 @@ PUT:
 
 URL:
 
-http://localhost:8080/api/user-projects/up001
+http://localhost:8080/api/users-projects/up001
 
 Request Body:
 
@@ -409,7 +409,7 @@ DELETE:
 
 URL:
 
-http://localhost:8080/api/user-projects/up002
+http://localhost:8080/api/users-projects/up002
 
 Response:
 
@@ -551,7 +551,7 @@ POST:
 
 URL:
 
-http://localhost:8080/api/user-groups
+http://localhost:8080/api/users-groups
 
 Request Body:
 
@@ -602,7 +602,7 @@ GET:
 
 URL:
 
-http://localhost:8080/api/user-groups
+http://localhost:8080/api/users-groups
 
 Response:
 
@@ -640,7 +640,7 @@ GET By ID:
 
 URL:
 
-http://localhost:8080/api/user-groups/ug001
+http://localhost:8080/api/users-groups/ug001
 
 Response:
 
@@ -677,7 +677,7 @@ PUT:
 
 URL:
 
-http://localhost:8080/api/user-groups/ug002
+http://localhost:8080/api/users-groups/ug002
 
 Request Body:
 
@@ -729,7 +729,7 @@ DELETE:
 
 URL:
 
-http://localhost:8080/api/user-groups/ug002
+http://localhost:8080/api/users-groups/ug002
 
 Response:
 
@@ -1276,7 +1276,7 @@ Request Body:
   "userGroup": {
     "userGroupId": "ug001"
   },
-  "user": {
+  "users": {
     "userId": "user123"
   },
   "createdAt": "2025-05-14T08:00:00Z",
@@ -1313,7 +1313,7 @@ Response:
         "createdAt": "2025-05-09T15:47:18.536335Z",
         "modifiedAt": "2025-05-09T15:47:18.536335Z"
     },
-    "user": {
+    "users": {
         "userId": "user123",
         "workspace": {
             "workspaceId": "ws001",
@@ -1375,7 +1375,7 @@ Response:
             "createdAt": "2025-05-09T15:47:18.536335Z",
             "modifiedAt": "2025-05-09T15:47:18.536335Z"
         },
-        "user": {
+        "users": {
             "userId": "user123",
             "workspace": {
                 "workspaceId": "ws001",
@@ -1436,7 +1436,7 @@ Response:
         "createdAt": "2025-05-09T15:47:18.536335Z",
         "modifiedAt": "2025-05-09T15:47:18.536335Z"
     },
-    "user": {
+    "users": {
         "userId": "user123",
         "workspace": {
             "workspaceId": "ws001",
@@ -1474,7 +1474,7 @@ Request Body:
   "userGroup": {
     "userGroupId": "ug001"
   },
-  "user": {
+  "users": {
     "userId": "user123"
   },
   "createdAt": "2025-05-14T08:00:00Z",
@@ -1495,7 +1495,7 @@ Response:
         "createdAt": "2025-05-14T15:29:19.892819700Z",
         "modifiedAt": "2025-05-14T15:29:19.892819700Z"
     },
-    "user": {
+    "users": {
         "userId": "user123",
         "workspace": null,
         "userName": null,

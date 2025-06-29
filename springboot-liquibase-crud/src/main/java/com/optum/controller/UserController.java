@@ -1,6 +1,6 @@
 package com.optum.controller;
 
-import com.optum.dto.User;
+import com.optum.dto.Users;
 import com.optum.dto.UserInfoResponse;
 import com.optum.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,24 +17,24 @@ public class UserController {
     private UserService service;
 
     @PostMapping
-    public ResponseEntity<User> create(@RequestBody User user) {
-        return ResponseEntity.ok(service.create(user));
+    public ResponseEntity<Users> create(@RequestBody Users users) {
+        return ResponseEntity.ok(service.create(users));
     }
 
     @GetMapping
-    public ResponseEntity<List<User>> getAll() {
+    public ResponseEntity<List<Users>> getAll() {
         return ResponseEntity.ok(service.getAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getById(@PathVariable String id) {
+    public ResponseEntity<Users> getById(@PathVariable String id) {
         return service.getById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<User> update(@PathVariable String id, @RequestBody User updated) {
+    public ResponseEntity<Users> update(@PathVariable String id, @RequestBody Users updated) {
         return ResponseEntity.ok(service.update(id, updated));
     }
 
@@ -43,7 +43,6 @@ public class UserController {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
-
     @GetMapping("/info")
     public ResponseEntity<UserInfoResponse> getUserInfoByEmail(@RequestParam String emailId) {
         return ResponseEntity.ok(service.getUserInfoByEmail(emailId));

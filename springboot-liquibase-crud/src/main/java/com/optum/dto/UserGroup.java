@@ -24,11 +24,11 @@ public class UserGroup {
     private String userGroupName;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "UserProjectId", referencedColumnName = "UserProjectId")
+    @JoinColumn(name = "user_project_id", referencedColumnName = "UserProjectId")
     private UserProject userProject;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "VendorProjectId", referencedColumnName = "VendorProjectId")
+    @JoinColumn(name = "vendor_project_id", referencedColumnName = "VendorProjectId")
     private VendorProject vendorProject;
 
     @Column(name = "Status", length = 100)

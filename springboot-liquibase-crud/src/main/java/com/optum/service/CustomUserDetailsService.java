@@ -1,6 +1,6 @@
 package com.optum.service;
 
-import com.optum.dto.User;
+import com.optum.dto.Users;
 import com.optum.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -19,13 +19,13 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
-        User user = userRepository.findById(userId)
+        Users users = userRepository.findById(userId)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found: " + userId));
 
         return new org.springframework.security.core.userdetails.User(
-                user.getUserId(),
-                user.getRole(),
-                List.of(new SimpleGrantedAuthority(user.getRole()))
+                users.getUserId(),
+                users.getRole(),
+                List.of(new SimpleGrantedAuthority(users.getRole()))
         );
     }
 }

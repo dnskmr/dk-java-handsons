@@ -2,10 +2,12 @@ package com.optum.dto;
 
 import jakarta.persistence.*;
 import lombok.*;
+
 import java.time.Instant;
+import java.util.UUID;
 
 @Entity
-@Table(name = "GroupMembership")
+@Table(name = "group_memberships")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -13,20 +15,27 @@ import java.time.Instant;
 public class GroupMembership {
 
     @Id
-    @Column(name = "GroupMembershipId", nullable = false, length = 255)
-    private String groupMembershipId;
+    @Column(name = "id", nullable = false, length = 255)
+    private String id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "UserGroupId", referencedColumnName = "UserGroupId")
+    @JoinColumn(name = "user _group_id", referencedColumnName = "id")
     private UserGroup userGroup;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "\"UserId\"", referencedColumnName = "\"UserId\"")
-    private User user;
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private Users user;
 
-    @Column(name = "CreatedAt")
+    @Column(name = "created_at")
     private Instant createdAt = Instant.now();
 
-    @Column(name = "ModifiedAt")
-    private Instant modifiedAt = Instant.now();
+    @Column(name = "updated_at")
+    private Instant updatedAt = Instant.now();
+
+    public void generateId() {
+        if (this.id == null || this.id.isEmpty()) {
+        }
+        this.id = UUID.randomUUID().toString();
+
+    }
 }

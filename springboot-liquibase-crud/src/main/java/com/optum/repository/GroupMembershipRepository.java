@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface GroupMembershipRepository extends JpaRepository<GroupMembership, String> {
     List<GroupMembership> findByUser_UserId(String userId);
+
+    List<GroupMembership> findByUser_id(String userId);
 }

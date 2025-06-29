@@ -4,7 +4,6 @@ import com.optum.consumer.FastAPIClient;
 import com.optum.dto.*;
 import com.optum.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -52,8 +51,8 @@ public class LabelboxProjectService {
     }
 
 
-    public void handleCreateEvent(HcpEventPayload payload) {
-        String uaisProjectId = payload.getResourceDefinition().getUaisProjectId();
+    public void handleCreateEvent(DataAnnotationServiceDocument payload) {
+        String uaisProjectId = payload.getUaisProjectId();
 
         // Check if UAIS Project exists
         Optional<UAISProject> uaisProjectOpt = uaisProjectRepository.findById(uaisProjectId);
@@ -66,10 +65,10 @@ public class LabelboxProjectService {
 
             // Create LabelboxProject
             LabelboxProject labelboxProject = LabelboxProject.builder()
-                    .projectName(payload.getResourceDefinition().getProjectName())
-                    .dataType(payload.getResourceDefinition().getDataType())
+                    .projectName(payload.getProjectName())
+                    .dataType(payload.getDataType().getTypeName())
                     .tag("") // Need to discuss
-                    .type(payload.getResourceType())
+                    .type(payload.getCreationType().toString()) // Need to discuss
                     .workspaceId(uaisProject.getWorkspace().getWorkspaceId())
                     .build();
 
@@ -86,12 +85,12 @@ public class LabelboxProjectService {
                 // Set ID to VendorProject
                 VendorProject vendorProject = VendorProject.builder()
                         .vendorProjectId(lbProjectId)
-                        .projectName(payload.getResourceDefinition().getProjectName())
-                        .dataType(payload.getResourceDefinition().getDataType())
+                        .projectName(payload.getProjectName())
+                        .dataType(payload.getDataType().getTypeName())
                         .tag("") // Need to discuss
-                        .vendorType(payload.getResourceType()) // Need to discuss
-                        .startDate(payload.getResourceDefinition().getStartDate())
-                        .endDate(payload.getResourceDefinition().getEndDate())
+                        .vendorType("") // Need to discuss
+                        .startDate(payload.getStartDate().toInstant()) // can we use or payload.getLifeCycleInfo().getCreated().getEventTime()?
+                        .endDate(payload.getEndDate().toInstant())
                         .build();
 
                 repository.save(labelboxProject);
@@ -165,13 +164,13 @@ public class LabelboxProjectService {
 //        repository.save(lbProject);
 //    }
 
-    public void handleUpdateEvent(HcpEventPayload payload) {
-        var def = payload.getResourceDefinition();
+    public void handleUpdateEvent(DataAnnotationServiceDocument payload) {
+        String uaisProjectId = payload.getUaisProjectId();
 
-        UAISProject uaisProject = uaisProjectRepository.findById(def.getUaisProjectId())
+        UAISProject uaisProject = uaisProjectRepository.findById(uaisProjectId)
                 .orElseThrow(() -> new RuntimeException("UAIS project not found"));
 
-        uaisProject.setProjectName(def.getProjectName());
+        uaisProject.setProjectName(payload.getProjectName());
         uaisProject.setModifiedAt(Instant.now());
         uaisProjectRepository.save(uaisProject);
     }

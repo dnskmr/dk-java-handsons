@@ -37,9 +37,9 @@ public class UAISProject {
     @Column(name = "Metadata", columnDefinition = "jsonb")
     private Map<String, Object> metadata;
 
-    @Column(name = "CreatedAt", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Column(name = "CreatedAt")
     private Instant createdAt;
 
-    @Column(name = "ModifiedAt", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Column(name = "ModifiedAt")
     private Instant modifiedAt;
 }

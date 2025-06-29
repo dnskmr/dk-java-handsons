@@ -1,7 +1,7 @@
 package com.optum.service;
 
 import com.optum.dto.GroupMembership;
-import com.optum.dto.User;
+import com.optum.dto.Users;
 import com.optum.dto.UserGroup;
 import com.optum.dto.UserInfoResponse;
 import com.optum.repository.GroupMembershipRepository;
@@ -31,23 +31,23 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public User create(User user) {
-        user.setRole(normalizeRole(user.getRole()));
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setCreatedAt(Instant.now());
-        user.setModifiedAt(Instant.now());
-        return repository.save(user);
+    public Users create(Users users) {
+        users.setRole(normalizeRole(users.getRole()));
+        users.setPassword(passwordEncoder.encode(users.getPassword()));
+        users.setCreatedAt(Instant.now());
+        users.setModifiedAt(Instant.now());
+        return repository.save(users);
     }
 
-    public List<User> getAll() {
+    public List<Users> getAll() {
         return repository.findAll();
     }
 
-    public Optional<User> getById(String id) {
+    public Optional<Users> getById(String id) {
         return repository.findById(id);
     }
 
-    public User update(String id, User updated) {
+    public Users update(String id, Users updated) {
         return repository.findById(id).map(existing -> {
             existing.setWorkspace(updated.getWorkspace());
             existing.setUserName(updated.getUserName());
@@ -77,10 +77,10 @@ public class UserService {
     }
 
     public UserInfoResponse getUserInfoByEmail(String emailId) {
-        User user = repository.findByEmail(emailId)
+        Users users = repository.findByEmail(emailId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        List<GroupMembership> memberships = groupMembershipRepository.findByUser_UserId(user.getUserId());
+        List<GroupMembership> memberships = groupMembershipRepository.findByUser_id(users.getUserId());
 
         List<UserInfoResponse.UserGroupInfo> userGroupInfos = new ArrayList<>();
 
@@ -98,10 +98,10 @@ public class UserService {
         }
 
         UserInfoResponse response = new UserInfoResponse();
-        response.setUserId(user.getUserId());
-        response.setUserName(user.getUserName());
-        response.setEmail(user.getEmail());
-        response.setWorkspace(user.getWorkspace());
+        response.setUserId(users.getUserId());
+        response.setUserName(users.getUserName());
+        response.setEmail(users.getEmail());
+        response.setWorkspace(users.getWorkspace());
         response.setUserGroups(userGroupInfos);
 
         return response;
